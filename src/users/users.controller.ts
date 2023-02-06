@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiNotFoundResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
@@ -10,7 +10,7 @@ export class UsersController {
 
     @Get('/:id')
     @ApiOperation({ summary: 'Get user by id' })
-    @ApiResponse({
+    @ApiOkResponse({
         status: 200,
         description: 'Retrieve user successful',
         type: User

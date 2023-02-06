@@ -9,6 +9,7 @@ async function bootstrap() {
         .setTitle('Celine POC API')
         .setDescription('')
         .setVersion('0.1')
+        .addTag('Auth')
         .addTag('Users')
         .build();
 

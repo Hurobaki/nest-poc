@@ -1,5 +1,5 @@
 import { JsonDecoder } from 'ts.data.json';
-import { UserAuth } from '../auth/entities/userAuth';
+import { UserAuth } from '../auth/entities/userAuth.entity';
 import dataJson from './data.json';
 import { UserDecoder } from './decoders/user';
 
