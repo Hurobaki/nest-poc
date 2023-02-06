@@ -2,98 +2,41 @@
     {
         "id": "63dd1ca94902653ce9344fdc",
         "name": "Lowery Mclean",
-        "gender": "male",
         "age": 47,
         "company": "CONFRENZY",
         "email": "lowerymclean@confrenzy.com",
-        "phone": "+1 (808) 424-3838",
-        "address": "181 Irwin Street, Martell, Oklahoma, 5977",
-        "registered": "2021-03-31",
-        "colleague": [
-            {
-                "id": "63dd1ca908dbc4a7738c0761",
-                "name": "Vargas Collins"
-            }
-        ]
+        "registered": "2021-03-31"
     },
     {
         "id": "63dd1ca9dceaf5ca2c30a19c",
         "name": "Blevins Sawyer",
-        "gender": "male",
         "age": 30,
         "company": "EZENT",
         "email": "blevinssawyer@ezent.com",
-        "phone": "+1 (888) 518-2921",
-        "address": "144 Maujer Street, Downsville, Missouri, 8410",
-        "registered": "2022-02-27",
-        "colleague": [
-            {
-                "id": "63dd1ca909b6be485b7c9f4d",
-                "name": "Hays Gamble"
-            },
-            {
-                "id": "63dd1ca9ae1f5c00ef2118be",
-                "name": "Lauren Vazquez"
-            }
-        ]
+        "registered": "2022-02-27"
     },
     {
         "id": "63dd1ca9bc9ef5da14592799",
         "name": "Howard Stephens",
-        "gender": "male",
         "age": 58,
         "company": "KOFFEE",
         "email": "howardstephens@koffee.com",
-        "phone": "+1 (878) 559-2690",
-        "address": "376 Bowery Street, Wikieup, New Hampshire, 7940",
-        "registered": "2014-11-24",
-        "colleague": [
-            {
-                "id": "63dd1ca9a3d56207e4615e29",
-                "name": "Albert Conway"
-            },
-            {
-                "id": "63dd1ca9c10524e3ce5aa8e1",
-                "name": "Polly Melton"
-            }
-        ]
+        "registered": "2014-11-24"
     },
     {
         "id": "63dd1ca9ae64ffb728cd41c1",
         "name": "Jodi Santos",
-        "gender": "female",
         "age": 44,
         "company": "PORTALINE",
         "email": "jodisantos@portaline.com",
-        "phone": "+1 (880) 530-3577",
-        "address": "296 Delmonico Place, Thynedale, Guam, 9330",
-        "registered": "2018-03-12",
-        "colleague": [
-            {
-                "id": "63dd1ca98823a864d8d68fef",
-                "name": "Donna Combs"
-            }
-        ]
+        "registered": "2018-03-12"
     },
     {
         "id": "63dd1ca97dfa16b2703e8a5a",
         "name": "Rice Murphy",
-        "gender": "male",
         "age": 33,
         "company": "SURETECH",
         "email": "ricemurphy@suretech.com",
-        "phone": "+1 (852) 582-2760",
-        "address": "916 Fillmore Avenue, Leland, Oregon, 3305",
-        "registered": "2017-01-06",
-        "colleague": [
-            {
-                "id": "63dd1ca9e4e4cd020c1a13f7",
-                "name": "Cook Hanson"
-            },
-            {
-                "id": "63dd1ca9f9679a9e7cf999f6",
-                "name": "Sanford Shields"
-            }
-        ]
+        "registered": "2017-01-06"
     }
 ]
