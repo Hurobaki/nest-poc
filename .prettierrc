@@ -3,5 +3,6 @@
   "trailingComma": "none",
   "tabWidth": 4,
   "printWidth": 120,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "endOfLine": "auto"
 }
