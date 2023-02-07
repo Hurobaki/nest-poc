@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiConflictResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateUserDTO } from './dto/createUser.dto';
+import { UpdateUserDTO } from './dto/updateUser.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
@@ -47,6 +48,20 @@ export class UsersController {
     })
     createUser(@Body() dto: CreateUserDTO): User {
         return this.usersService.create(dto);
+    }
+
+    @Patch('/update/:id')
+    @ApiOperation({ summary: 'Update user' })
+    @ApiOkResponse({
+        status: 200,
+        description: 'Update user successful',
+        type: User
+    })
+    @ApiNotFoundResponse({
+        description: 'User does not exist'
+    })
+    updateUser(@Param('id') id: string, @Body() dto: UpdateUserDTO): User {
+        return this.usersService.update(id, dto);
     }
 
     @Delete('/delete/:id')
