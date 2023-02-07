@@ -1,6 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class User {
+    constructor(id: string, name: string, age: number, company: string, email: string, registered: Date) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.company = company;
+        this.email = email;
+        this.registered = registered;
+    }
+
     @ApiProperty({ description: 'The id of the user' })
     public id: string;
 
