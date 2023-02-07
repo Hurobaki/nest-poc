@@ -6,14 +6,19 @@ module.exports = {
 		sourceType: 'module'
 	},
 	plugins: ['@typescript-eslint/eslint-plugin'],
-	extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'prettier'
+	],
 	root: true,
-	env: {
-		node: true,
-		jest: true
-	},
+	env: { node: true, jest: true },
 	ignorePatterns: ['.eslintrc.js'],
 	rules: {
+		'arrow-body-style': ['error', 'always'],
+		camelcase: 'error',
+		'no-duplicate-imports': 'error',
+		'prefer-const': 'error',
 		'@typescript-eslint/interface-name-prefix': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
