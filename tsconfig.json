@@ -1,21 +1,27 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
+		"strict": true,
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"target": "es2017",
+		"module": "CommonJS",
+		"baseUrl": "./",
+		"paths": {
+			"helpers/*": ["src/helpers/*"] // On peut définir des paths pour s'éviter de galérer à importer des fichiers
+		},
+		"resolveJsonModule": true,
 		"declaration": true,
+		"outDir": "./dist",
 		"removeComments": true,
+		"allowJs": false,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true,
-		"target": "es2017",
 		"sourceMap": true,
-		"outDir": "./dist",
-		"baseUrl": "./",
 		"incremental": true,
 		"skipLibCheck": true,
-		"strictNullChecks": false,
-		"noImplicitAny": false,
-		"strictBindCallApply": false,
-		"forceConsistentCasingInFileNames": false,
-		"noFallthroughCasesInSwitch": false
+		"forceConsistentCasingInFileNames": true
 	}
 }
