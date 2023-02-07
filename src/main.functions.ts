@@ -8,6 +8,8 @@ import { AppModule } from './app.module';
 
 const server: express.Express = express();
 
+const basePath = '/practice-web-et-mobile/europe-west1/nestjsPoc';
+
 async function createNestServer(expressInstance: express.Express) {
     const app: INestApplication = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
 
@@ -17,6 +19,7 @@ async function createNestServer(expressInstance: express.Express) {
         .setVersion('0.1')
         .addTag('Auth')
         .addTag('Users')
+        .addServer(basePath)
         .build();
 
     const document = SwaggerModule.createDocument(app, config);
