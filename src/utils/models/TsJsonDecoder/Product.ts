@@ -19,8 +19,6 @@ const productDecoder = record({
 
 type Product = decodeType<typeof productDecoder>;
 
-const crocroBag: Product = {};
-
 const turtleGlasses: Product = {
     id: 123456,
     name: 'Turtle glasses',
