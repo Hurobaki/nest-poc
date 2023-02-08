@@ -8,10 +8,11 @@ import { AppModule } from './app.module';
 
 const server: express.Express = express();
 
-const localBasePath = '/practice-web-et-mobile/europe-west1/nestjsPoc';
-const prodBasePath = '/nestjsPoc';
-
 async function createNestServer(expressInstance: express.Express) {
+    if (!process.env.BASE_PATH) {
+        throw new Error('Create Nest server failed: missing BASE_PATH environment variable');
+    }
+
     const app: INestApplication = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
 
     const config = new DocumentBuilder()
@@ -20,7 +21,7 @@ async function createNestServer(expressInstance: express.Express) {
         .setVersion('0.1')
         .addTag('Auth')
         .addTag('Users')
-        .addServer(prodBasePath)
+        .addServer(process.env.BASE_PATH)
         .build();
 
     const document = SwaggerModule.createDocument(app, config);

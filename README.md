@@ -34,6 +34,8 @@ $ yarn install
 
 ## Running the app
 
+### Run the app with nest
+
 ```bash
 # development
 $ yarn run start
@@ -44,6 +46,24 @@ $ yarn run start:dev
 # production mode
 $ yarn run start:prod
 ```
+
+The application will be available on: `http://localhost:3000`.
+
+To access the Swagger: `http://localhost:3000/swagger`.
+
+### Run the app with firebase functions
+
+```bash
+# development
+$ yarn firebase:develop
+
+# deploy
+$ yarn firebase:deploy
+```
+
+The application will be available on: `http://127.0.0.1:5001/practice-web-et-mobile/europe-west1/nestjsPoc`.
+
+To access the Swagger: `http://127.0.0.1:5001/practice-web-et-mobile/europe-west1/nestjsPoc/swagger`.
 
 ## Test
 
@@ -61,12 +81,6 @@ $ yarn run test:cov
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
