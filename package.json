@@ -12,7 +12,7 @@
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
-        "firebase:develop": "yarn build && firebase emulators:start",
+        "firebase:start": "yarn build && firebase emulators:start",
         "firebase:deploy": "yarn build && firebase deploy --only functions:nestjsPoc",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
         "test": "jest",
