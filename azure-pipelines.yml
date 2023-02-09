@@ -6,8 +6,9 @@
 name: backend
 appendCommitMessageToRunName: true
 
+# Set branch name to trigger the pipeline
 trigger:
-- master
+- none
 
 pool:
   vmImage: ubuntu-latest
