@@ -6,7 +6,6 @@
 name: backend
 appendCommitMessageToRunName: true
 
-
 trigger:
 - master
 
