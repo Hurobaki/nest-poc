@@ -1,6 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ApiConflictResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateUserDTO } from './dto/createUser.dto';
+import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -11,6 +10,7 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     @Get('/:id')
+    @ApiBearerAuth('jwt')
     @ApiOperation({ summary: 'Get user by id' })
     @ApiOkResponse({
         status: 200,
@@ -25,6 +25,7 @@ export class UsersController {
     }
 
     @Get('/')
+    @ApiBearerAuth('jwt')
     @ApiOperation({ summary: 'Get all users' })
     @ApiOkResponse({
         status: 200,
@@ -36,21 +37,8 @@ export class UsersController {
         return this.usersService.getAll();
     }
 
-    @Post('/create')
-    @ApiOperation({ summary: 'Create a new user' })
-    @ApiOkResponse({
-        status: 200,
-        description: 'Create user successful',
-        type: User
-    })
-    @ApiConflictResponse({
-        description: 'This email already exists'
-    })
-    createUser(@Body() dto: CreateUserDTO): User {
-        return this.usersService.create(dto);
-    }
-
     @Patch('/update/:id')
+    @ApiBearerAuth('jwt')
     @ApiOperation({ summary: 'Update user' })
     @ApiOkResponse({
         status: 200,
@@ -65,6 +53,7 @@ export class UsersController {
     }
 
     @Delete('/delete/:id')
+    @ApiBearerAuth('jwt')
     @ApiOperation({ summary: 'Delete user' })
     @ApiOkResponse({
         status: 200,

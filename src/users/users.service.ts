@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { users } from '../utils/data';
-import { CreateUserDTO } from './dto/createUser.dto';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 import { User } from './entities/user.entity';
 
@@ -18,19 +17,19 @@ export class UsersService {
         return users;
     }
 
-    create(createUserDto: CreateUserDTO): User {
-        const user = users.find(user => user.email === createUserDto.email);
+    create(id: string, email: string, name: string, age: number, company: string): User {
+        const user = users.find(user => user.email === email);
 
         if (user) {
             throw new HttpException('This email already exists', HttpStatus.CONFLICT);
         }
 
         const newUser: User = {
-            id: Math.random().toString(36).slice(2),
-            name: createUserDto.name,
-            age: createUserDto.age,
-            company: createUserDto.company,
-            email: createUserDto.email,
+            id: id,
+            name: name,
+            age: age,
+            company: company,
+            email: email,
             registered: new Date()
         };
         users.push(newUser);

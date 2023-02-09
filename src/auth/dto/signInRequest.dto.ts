@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AuthRequestDTO {
+export class SignInRequestDTO {
     constructor(email: string, password: string) {
         this.email = email;
         this.password = password;

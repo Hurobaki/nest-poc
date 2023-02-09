@@ -1,14 +1,14 @@
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/swagger';
 import express from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './app.module';
 
 const server: express.Express = express();
 
-async function createNestServer(expressInstance: express.Express) {
+const createNestServer = async (expressInstance: express.Express): Promise<INestApplication> => {
     if (!process.env.BASE_PATH) {
         throw new Error('Create Nest server failed: missing BASE_PATH environment variable');
     }
@@ -22,13 +22,26 @@ async function createNestServer(expressInstance: express.Express) {
         .addTag('Auth')
         .addTag('Users')
         .addServer(process.env.BASE_PATH)
+        .addBearerAuth(
+            {
+                in: 'header',
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT'
+            },
+            'jwt'
+        )
         .build();
 
-    const document = SwaggerModule.createDocument(app, config);
+    const options: SwaggerDocumentOptions = {
+        operationIdFactory: (controllerKey: string, methodKey: string) => methodKey
+    };
+
+    const document = SwaggerModule.createDocument(app, config, options);
     SwaggerModule.setup('swagger', app, document);
 
     return await app.init();
-}
+};
 
 createNestServer(server)
     .then(() => console.log('Nest Ready'))

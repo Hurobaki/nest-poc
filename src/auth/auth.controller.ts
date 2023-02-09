@@ -1,33 +1,52 @@
-import { Body, Controller, HttpCode, Post, Request, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { User } from '../users/entities/user.entity';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, SetMetadata } from '@nestjs/common';
+import {
+    ApiBadRequestResponse,
+    ApiBearerAuth,
+    ApiConflictResponse,
+    ApiForbiddenResponse,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags
+} from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { AuthRequestDTO } from './dto/authRequest.dto';
+import { AuthRefreshTokenRequestDTO } from './dto/authRefreshTokenRequest.dto';
+import { AuthResponseDTO } from './dto/authResponse.dto';
+import { SignInRequestDTO } from './dto/signInRequest.dto';
+import { SignUpRequestDTO } from './dto/signUpRequest.dto';
 
 @Controller('auth')
 @ApiTags('Auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-    /**
-     * How it works ?
-     * What is the type of request ?
-     * What means request.user ?
-     */
-    @UseGuards(AuthGuard('local'))
-    @Post('/login')
-    login(@Request() request: any): User {
-        return request.user;
+    @Post('/signup')
+    @ApiBearerAuth('jwt')
+    @HttpCode(HttpStatus.CREATED)
+    @ApiOperation({ summary: 'Sign up' })
+    @ApiOkResponse({
+        status: 200,
+        description: 'Create account successful',
+        type: AuthResponseDTO
+    })
+    @ApiConflictResponse({
+        description: 'This user is already registered'
+    })
+    @ApiForbiddenResponse({
+        description: 'Access denied'
+    })
+    async signUp(@Body() request: SignUpRequestDTO): Promise<AuthResponseDTO> {
+        return await this.authService.signUp(request);
     }
 
-    @Post('/connection')
-    @HttpCode(200)
-    @ApiOperation({ summary: 'Login' })
+    @SetMetadata('isPublic', true)
+    @Post('/signin')
+    @HttpCode(HttpStatus.OK)
+    @ApiOperation({ summary: 'Sign in' })
     @ApiOkResponse({
         status: 200,
         description: 'Connection successful',
-        type: User
+        type: AuthResponseDTO
     })
     @ApiNotFoundResponse({
         description: 'This user has not been registered'
@@ -35,7 +54,45 @@ export class AuthController {
     @ApiBadRequestResponse({
         description: 'The password is incorrect'
     })
-    connection(@Body() request: AuthRequestDTO): User {
-        return this.authService.login(request.email, request.password);
+    async signIn(@Body() request: SignInRequestDTO): Promise<AuthResponseDTO> {
+        return await this.authService.signIn(request);
+    }
+
+    @Get('/logout/:userId')
+    @ApiBearerAuth('jwt')
+    @HttpCode(HttpStatus.OK)
+    @ApiOperation({ summary: 'Logout' })
+    @ApiOkResponse({
+        status: 200,
+        description: 'Logout successful',
+        type: AuthResponseDTO
+    })
+    @ApiNotFoundResponse({
+        description: 'This user has not been registered'
+    })
+    @ApiForbiddenResponse({
+        description: 'Access denied'
+    })
+    logout(@Param('userId') userId: string): void {
+        return this.authService.logout(userId);
+    }
+
+    @SetMetadata('isPublic', true)
+    @Post('/refresh')
+    @HttpCode(HttpStatus.OK)
+    @ApiOperation({ summary: 'Get new refresh token' })
+    @ApiOkResponse({
+        status: 200,
+        description: 'Logout successful',
+        type: AuthResponseDTO
+    })
+    @ApiForbiddenResponse({
+        description: 'Access denied'
+    })
+    @ApiNotFoundResponse({
+        description: 'This user has not been registered'
+    })
+    refreshTokens(@Body() request: AuthRefreshTokenRequestDTO): Promise<AuthResponseDTO> {
+        return this.authService.refreshTokens(request);
     }
 }

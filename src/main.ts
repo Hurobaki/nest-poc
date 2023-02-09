@@ -3,7 +3,7 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
 import { AppModule } from './app.module';
 import { TestDTO } from './users/dto/test.dto';
 
-async function bootstrap() {
+const bootstrap = async (): Promise<void> => {
     const app = await NestFactory.create(AppModule);
 
     const config = new DocumentBuilder()
@@ -12,9 +12,19 @@ async function bootstrap() {
         .setVersion('0.1')
         .addTag('Auth')
         .addTag('Users')
+        .addBearerAuth(
+            {
+                in: 'header',
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT'
+            },
+            'jwt'
+        )
         .build();
 
     const options: SwaggerDocumentOptions = {
+        operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
         // Extra models that should be inspected and included in the specification
         extraModels: [TestDTO]
     };
@@ -23,5 +33,6 @@ async function bootstrap() {
     SwaggerModule.setup('swagger', app, document);
 
     await app.listen(3000);
-}
+};
+
 bootstrap();
