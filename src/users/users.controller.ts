@@ -1,5 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+    ApiBearerAuth,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags,
+    ApiUnauthorizedResponse
+} from '@nestjs/swagger';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -17,6 +24,9 @@ export class UsersController {
         description: 'Retrieve user successful',
         type: User
     })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
+    })
     @ApiNotFoundResponse({
         description: 'User does not exist'
     })
@@ -33,6 +43,9 @@ export class UsersController {
         type: User,
         isArray: true
     })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
+    })
     getAllUsers(): User[] {
         return this.usersService.getAll();
     }
@@ -44,6 +57,9 @@ export class UsersController {
         status: 200,
         description: 'Update user successful',
         type: User
+    })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
     })
     @ApiNotFoundResponse({
         description: 'User does not exist'
@@ -59,6 +75,9 @@ export class UsersController {
         status: 200,
         description: 'Delete user successful',
         type: User
+    })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
     })
     @ApiNotFoundResponse({
         description: 'User does not exist'

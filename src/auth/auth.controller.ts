@@ -7,7 +7,8 @@ import {
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiOperation,
-    ApiTags
+    ApiTags,
+    ApiUnauthorizedResponse
 } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthRefreshTokenRequestDTO } from './dto/authRefreshTokenRequest.dto';
@@ -29,11 +30,11 @@ export class AuthController {
         description: 'Create account successful',
         type: AuthResponseDTO
     })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
+    })
     @ApiConflictResponse({
         description: 'This user is already registered'
-    })
-    @ApiForbiddenResponse({
-        description: 'Access denied'
     })
     async signUp(@Body() request: SignUpRequestDTO): Promise<AuthResponseDTO> {
         return await this.authService.signUp(request);
@@ -67,11 +68,11 @@ export class AuthController {
         description: 'Logout successful',
         type: AuthResponseDTO
     })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
+    })
     @ApiNotFoundResponse({
         description: 'This user has not been registered'
-    })
-    @ApiForbiddenResponse({
-        description: 'Access denied'
     })
     logout(@Param('userId') userId: string): void {
         return this.authService.logout(userId);
@@ -85,6 +86,9 @@ export class AuthController {
         status: 200,
         description: 'Logout successful',
         type: AuthResponseDTO
+    })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
     })
     @ApiForbiddenResponse({
         description: 'Access denied'

@@ -15,7 +15,7 @@ export const registeredUsers: UserAuth[] = [
     },
     {
         userId: '63dd1ca9dceaf5ca2c30a19c',
-        email: 'blevinssawyer@ezent.com"',
+        email: 'blevinssawyer@ezent.com',
         password: 'password'
     },
     {
