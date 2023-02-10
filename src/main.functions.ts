@@ -13,6 +13,10 @@ const createNestServer = async (expressInstance: express.Express): Promise<INest
         throw new Error('Create Nest server failed: missing BASE_PATH environment variable');
     }
 
+    console.log('===================');
+    console.log('runWith: ', process.env.CELINE_TEST_API_KEY);
+    console.log('===================');
+
     const app: INestApplication = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
 
     const config = new DocumentBuilder()
@@ -47,4 +51,7 @@ createNestServer(server)
     .then(() => console.log('Nest Ready'))
     .catch(err => console.error('Nest broken', err));
 
-export const nestjsPoc: functions.HttpsFunction = functions.region('europe-west1').https.onRequest(server);
+export const nestjsPoc: functions.HttpsFunction = functions
+    .region('europe-west1')
+    .runWith({ secrets: ['CELINE_TEST_API_KEY'] })
+    .https.onRequest(server);
