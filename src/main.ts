@@ -25,7 +25,6 @@ const bootstrap = async (): Promise<void> => {
 
     const options: SwaggerDocumentOptions = {
         operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
-        // Extra models that should be inspected and included in the specification
         extraModels: [TestDTO]
     };
 

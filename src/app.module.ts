@@ -10,6 +10,10 @@ import { UsersModule } from './users/users.module';
     imports: [AuthModule, UsersModule],
     controllers: [AppController],
     providers: [
+        /**
+         * Set global guard
+         * All endpoints, except those with 'isPublic' metadata (see at.guard.ts), will need an access token
+         */
         {
             provide: APP_GUARD,
             useClass: AtGuard

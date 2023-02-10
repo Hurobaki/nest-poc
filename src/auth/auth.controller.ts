@@ -28,7 +28,7 @@ export class AuthController {
     @ApiOkResponse({
         status: 200,
         description: 'Create account successful',
-        type: AuthResponseDTO
+        type: AuthResponseDTO // The argument passed to type must be a class, it won't work if you pass a type
     })
     @ApiUnauthorizedResponse({
         description: 'Unauthorized'

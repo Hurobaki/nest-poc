@@ -7,7 +7,9 @@ import { JwtPayload } from '../types/jwtPayload.type';
 export class AtStrategy extends PassportStrategy(Strategy, 'jwt') {
     constructor() {
         super({
+            // Allows to extract the token from the header authorization
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            // Secret to sign the token
             secretOrKey: process.env.JWT_ACCESS_SECRET
         });
     }
