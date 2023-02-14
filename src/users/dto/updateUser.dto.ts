@@ -7,12 +7,9 @@ export class UpdateUserDTO {
         this.company = company;
     }
 
-    @ApiProperty({ description: 'The name of the user' })
     public name: string;
 
-    @ApiProperty({ description: 'The age of the user' })
     public age: number;
 
-    @ApiProperty({ description: 'The company of the user' })
     public company: string;
 }
