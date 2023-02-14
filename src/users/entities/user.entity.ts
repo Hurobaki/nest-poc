@@ -1,7 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { Company } from '../../utils/models/Company';
 
 export class User {
-    constructor(id: string, name: string, age: number, company: string, email: string, registered: Date) {
+    constructor(id: string, name: string, age: number, company: Company, email: string, registered: Date) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -10,21 +10,34 @@ export class User {
         this.registered = registered;
     }
 
-    @ApiProperty({ description: 'The id of the user' })
+    /**
+     * The id of the user
+     */
     public id: string;
 
-    @ApiProperty({ description: 'The name of the user' })
+    /**
+     * The name of the user
+     * @example Steve
+     */
     public name: string;
 
-    @ApiProperty({ description: 'The age of the user' })
-    public age: number;
+    /**
+     * The age of the user
+     */
+    public age?: number;
 
-    @ApiProperty({ description: 'The company of the user' })
-    public company: string;
+    /**
+     * The company of the user
+     */
+    company: Company;
 
-    @ApiProperty({ description: 'The email of the user' })
+    /**
+     * The email of the user
+     */
     public email: string;
 
-    @ApiProperty({ description: 'The registered date of the user' })
+    /**
+     * The registered date of the user
+     */
     public registered: Date;
 }

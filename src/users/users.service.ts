@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { users } from '../utils/data';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 import { User } from './entities/user.entity';
+import { Company } from '../utils/models/Company';
 
 @Injectable()
 export class UsersService {
@@ -28,7 +29,7 @@ export class UsersService {
             id: id,
             name: name,
             age: age,
-            company: company,
+            company: Company.Facebook,
             email: email,
             registered: new Date()
         };
@@ -46,7 +47,7 @@ export class UsersService {
 
         users[index].name = updateUserDTO.name;
         users[index].age = updateUserDTO.age;
-        users[index].company = updateUserDTO.company;
+        users[index].company = Company.Facebook;
 
         return users[index];
     }
