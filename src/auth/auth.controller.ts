@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, SetMetadata } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
     ApiBearerAuth,
@@ -15,6 +15,7 @@ import { AuthRefreshTokenRequestDTO } from './dto/authRefreshTokenRequest.dto';
 import { AuthResponseDTO } from './dto/authResponse.dto';
 import { SignInRequestDTO } from './dto/signInRequest.dto';
 import { SignUpRequestDTO } from './dto/signUpRequest.dto';
+import { Public } from '../utils/decorators/Public';
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -40,7 +41,7 @@ export class AuthController {
         return await this.authService.signUp(request);
     }
 
-    @SetMetadata('isPublic', true)
+    @Public()
     @Post('/signin')
     @HttpCode(HttpStatus.OK)
     @ApiOperation({ summary: 'Sign in' })
@@ -78,7 +79,7 @@ export class AuthController {
         return this.authService.logout(userId);
     }
 
-    @SetMetadata('isPublic', true)
+    @Public()
     @Post('/refresh')
     @HttpCode(HttpStatus.OK)
     @ApiOperation({ summary: 'Get new refresh token' })
