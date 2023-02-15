@@ -2,9 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { TestDTO } from './users/dto/test.dto';
+import { ValidationPipe } from '@nestjs/common';
 
 const bootstrap = async (): Promise<void> => {
     const app = await NestFactory.create(AppModule);
+    app.useGlobalPipes(new ValidationPipe());
 
     const config = new DocumentBuilder()
         .setTitle('Celine POC API')

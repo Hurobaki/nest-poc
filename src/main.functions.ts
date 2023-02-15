@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
 import express from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './app.module';
+import admin from 'firebase-admin';
 
 /**
  * Comment for the line "main": "dist/main.functions.js" of the package.json :
@@ -14,6 +15,8 @@ import { AppModule } from './app.module';
  */
 
 const server: express.Express = express();
+
+admin.initializeApp();
 
 const createNestServer = async (expressInstance: express.Express): Promise<INestApplication> => {
     if (!process.env.BASE_PATH) {

@@ -5,9 +5,10 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AtGuard } from './auth/guard/at.guard';
 import { UsersModule } from './users/users.module';
+import { CatsModule } from './cats/cats.module';
 
 @Module({
-    imports: [AuthModule, UsersModule],
+    imports: [AuthModule, UsersModule, CatsModule],
     controllers: [AppController],
     providers: [
         /**
