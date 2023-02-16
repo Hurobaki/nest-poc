@@ -58,6 +58,7 @@ const createNestServer = async (expressInstance: express.Express): Promise<INest
             },
             'jwt'
         )
+        .addSecurityRequirements('jwt')
         .build();
 
     const options: SwaggerDocumentOptions = {

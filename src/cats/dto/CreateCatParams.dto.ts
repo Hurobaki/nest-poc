@@ -1,6 +1,6 @@
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class CreateCatDto {
+export class CreateCatParams {
     constructor(name: string, age: number, lastVaccinationTimestamp?: number) {
         this.name = name;
         this.age = age;

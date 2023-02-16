@@ -1,14 +1,14 @@
 import admin from 'firebase-admin';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
+import { CreateCatParams } from './dto/CreateCatParams.dto';
+import { UpdateCatParams } from './dto/UpdateCatParams.dto';
 import { CatEntity } from './entities/cat.entity';
 import { Nothing, Some } from 'ts-help';
 import { FindOneParams } from './params/FindOneParams';
 
 @Injectable()
 export class CatsService {
-    async create(createCatDto: CreateCatDto): Promise<string> {
+    async create(createCatDto: CreateCatParams): Promise<string> {
         const cat: CatEntity = {
             id: new Date().getTime().toString(),
             name: createCatDto.name,
@@ -41,7 +41,7 @@ export class CatsService {
         return data as CatEntity;
     }
 
-    update(id: number, updateCatDto: UpdateCatDto) {
+    update(id: number, updateCatDto: UpdateCatParams) {
         return `This action updates a #${id} cat`;
     }
 

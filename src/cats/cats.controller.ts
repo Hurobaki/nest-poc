@@ -1,15 +1,38 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
+import { CreateCatParams } from './dto/CreateCatParams.dto';
+import { UpdateCatParams } from './dto/UpdateCatParams.dto';
 import { FindOneParams } from './params/FindOneParams';
+import {
+    ApiBearerAuth,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags,
+    ApiUnauthorizedResponse
+} from '@nestjs/swagger';
+import { JsonDecoder } from 'ts.data.json';
+import string = JsonDecoder.string;
 
 @Controller('cats')
+@ApiTags('Cats')
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
     @Post()
-    async create(@Body() createCatDto: CreateCatDto): Promise<string> {
+    @ApiBearerAuth('jwt')
+    @ApiOperation({ summary: 'Add a new cat to the database' })
+    @ApiOkResponse({
+        status: 200,
+        description: 'Your new cat has been successfully created.'
+    })
+    @ApiUnauthorizedResponse({
+        description: 'Unauthorized'
+    })
+    @ApiNotFoundResponse({
+        description: 'User does not exist'
+    })
+    async create(@Body() createCatDto: CreateCatParams): Promise<string> {
         const res = await this.catsService.create(createCatDto);
         return res;
     }
@@ -19,7 +42,7 @@ export class CatsController {
     //     return this.catsService.findAll();
     // }
     //
-    @Get(':id')
+    @Get('/:id')
     findOne(@Param() params: FindOneParams) {
         return this.catsService.findOne(params);
     }
