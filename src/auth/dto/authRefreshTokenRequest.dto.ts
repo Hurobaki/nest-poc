@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
 
 export class AuthRefreshTokenRequestDTO {
     constructor(userId: string, refreshToken: string) {
@@ -7,8 +8,10 @@ export class AuthRefreshTokenRequestDTO {
     }
 
     @ApiProperty({ description: 'The id of the user' })
+    @IsString()
     public userId: string;
 
     @ApiProperty({ description: 'Refresh token' })
+    @IsString()
     public refreshToken: string;
 }

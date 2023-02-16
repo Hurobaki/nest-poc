@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateCatDto {
     constructor(name: string, age: number, lastVaccinationTimestamp?: number) {
@@ -11,18 +11,18 @@ export class CreateCatDto {
      * The name of the cat
      */
     @IsString()
-    public name: string;
+    name: string;
 
     /**
      * The age of the cat
      */
     @IsNumber()
-    public age: number;
+    age: number;
 
     /**
      * The lastVaccinationTimestamp of the cat
      */
     @IsOptional()
     @IsNumber()
-    public lastVaccinationTimestamp?: number;
+    lastVaccinationTimestamp?: number;
 }

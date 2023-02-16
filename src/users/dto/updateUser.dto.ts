@@ -1,3 +1,5 @@
+import { IsNumber, IsString } from 'class-validator';
+
 export class UpdateUserDTO {
     constructor(name: string, age: number, company: string) {
         this.name = name;
@@ -5,9 +7,12 @@ export class UpdateUserDTO {
         this.company = company;
     }
 
+    @IsString()
     public name: string;
 
+    @IsNumber()
     public age?: number = 45;
 
+    @IsString()
     public company: string;
 }
