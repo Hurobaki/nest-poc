@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
+import { FindOneParams } from './params/FindOneParams';
 
 @Controller('cats')
 export class CatsController {
@@ -18,10 +19,10 @@ export class CatsController {
     //     return this.catsService.findAll();
     // }
     //
-    // @Get(':id')
-    // findOne(@Param('id') id: string) {
-    //     return this.catsService.findOne(+id);
-    // }
+    @Get(':id')
+    findOne(@Param() params: FindOneParams) {
+        return this.catsService.findOne(params);
+    }
     //
     // @Patch(':id')
     // update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {

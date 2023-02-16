@@ -1,6 +1,6 @@
 import { Maybe } from 'ts-help';
 
-export class Cat {
+export class CatEntity {
     constructor(id: string, name: string, age: number, lastVaccinationTimestamp: Maybe<number>) {
         this.id = id;
         this.name = name;
