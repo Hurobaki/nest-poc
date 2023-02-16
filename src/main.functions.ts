@@ -6,6 +6,7 @@ import express from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './app.module';
 import admin from 'firebase-admin';
+import { TestDTO } from './users/dto/test.dto';
 
 /**
  * Comment for the line "main": "dist/main.functions.js" of the package.json :
@@ -69,7 +70,7 @@ const createNestServer = async (expressInstance: express.Express): Promise<INest
         /**
          * Additional, extra models that should be inspected and included in the specification
          */
-        extraModels: []
+        extraModels: [TestDTO]
     };
 
     const document = SwaggerModule.createDocument(app, config, options);

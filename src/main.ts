@@ -36,4 +36,4 @@ const bootstrap = async (): Promise<void> => {
     await app.listen(3000);
 };
 
-bootstrap();
+bootstrap().then(() => console.log('MAIN LAUNCHED NEST'));
