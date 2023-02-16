@@ -1,4 +1,4 @@
-import { INestApplication } from '@nestjs/common';
+import { BadRequestException, INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/swagger';
@@ -28,6 +28,14 @@ const createNestServer = async (expressInstance: express.Express): Promise<INest
     console.log('===================');
 
     const app: INestApplication = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
+    app.useGlobalPipes(
+        new ValidationPipe({
+            exceptionFactory: e => {
+                console.log(`${e}`);
+                throw new BadRequestException('Request did not pass data validation');
+            }
+        })
+    );
 
     const config = new DocumentBuilder()
         .setTitle('Celine POC API')
