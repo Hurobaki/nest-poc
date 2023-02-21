@@ -44,18 +44,18 @@ export class UsersService {
 		return newUser;
 	}
 
-	update(userId: string, updateUserDTO: UpdateUserDTO): User {
-		const index = users.findIndex((user) => user.id === userId);
-
-		if (index === -1) {
-			throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-		}
-
-		users[index].name = updateUserDTO.name;
-		users[index].age = updateUserDTO.age;
-		users[index].company = Company.Facebook;
-
-		return users[index];
+	update(userId: string, updateUserDTO: UpdateUserDTO): void {
+		// const index = users.findIndex((user) => user.id === userId);
+		//
+		// if (index === -1) {
+		// 	throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+		// }
+		//
+		// users[index].name = updateUserDTO.name;
+		// users[index].age = updateUserDTO.age;
+		// users[index].company = Company.Facebook;
+		//
+		// return users[index];
 	}
 
 	delete(userId: string): void {

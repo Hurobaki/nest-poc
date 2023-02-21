@@ -30,14 +30,14 @@ admin.initializeApp();
 const createNestServer = async (
 	expressInstance: express.Express
 ): Promise<INestApplication> => {
-	if (!process.env.BASE_PATH) {
+	if (!process.env['BASE_PATH']) {
 		throw new Error(
 			'Create Nest server failed: missing BASE_PATH environment variable'
 		);
 	}
 
 	console.log('===================');
-	console.log('runWith: ', process.env.CELINE_TEST_API_KEY);
+	console.log('runWith: ', process.env['CELINE_TEST_API_KEY']);
 	console.log('===================');
 
 	const app: INestApplication = await NestFactory.create(
@@ -63,7 +63,7 @@ const createNestServer = async (
 		 * .addServer allows to add the missing path
 		 * Without this line the swagger will fetch [deployment_url]/[endpoint] instead of [deployment_url]/[function_name]/[endpoint]
 		 */
-		.addServer(process.env.BASE_PATH)
+		.addServer(process.env['BASE_PATH'])
 		.addBearerAuth(
 			{
 				in: 'header',

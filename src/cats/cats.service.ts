@@ -2,14 +2,15 @@ import admin from 'firebase-admin';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateCatParams } from './dto/CreateCatParams.dto';
 import { UpdateCatParams } from './dto/UpdateCatParams.dto';
-import { CatEntity } from './entities/cat.entity';
 import { Nothing, Some } from 'ts-help';
 import { FindOneParams } from './params/FindOneParams';
+import { Cat } from '../utils/models/entities/types/Cat';
+import { CatEntity } from './entities/cat.entity';
 
 @Injectable()
 export class CatsService {
 	async create(createCatDto: CreateCatParams): Promise<string> {
-		const cat: CatEntity = {
+		const cat: Cat = {
 			id: new Date().getTime().toString(),
 			name: createCatDto.name,
 			age: createCatDto.age,

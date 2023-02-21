@@ -9,6 +9,7 @@ import { SignUpRequestDTO } from './dto/signUpRequest.dto';
 import { SignUpResponseDTO } from './dto/signUpResponse.dto';
 import { UserAuth } from './entities/userAuth.entity';
 import { JwtPayload } from './types/jwtPayload.type';
+import { ArrayHelpers } from 'ts-help';
 
 @Injectable()
 export class AuthService {
@@ -48,74 +49,74 @@ export class AuthService {
 	}
 
 	async signIn(dto: SignInRequestDTO): Promise<AuthResponseDTO> {
-		const indexUserAuth = registeredUsers.findIndex(
+		const maybeUserAuth = ArrayHelpers.find(
+			registeredUsers,
 			(auth) => auth.email === dto.email
 		);
 
-		if (indexUserAuth === -1) {
+		if (!maybeUserAuth.isSome) {
 			throw new HttpException(
 				'This user has not been registered',
 				HttpStatus.NOT_FOUND
 			);
 		}
 
-		if (registeredUsers[indexUserAuth].password !== dto.password) {
+		const userAuth = maybeUserAuth.value;
+
+		if (userAuth.password !== dto.password) {
 			throw new HttpException(
 				'The password is incorrect',
 				HttpStatus.BAD_REQUEST
 			);
 		}
 
-		const tokens = await this.getTokens(
-			registeredUsers[indexUserAuth].userId,
-			registeredUsers[indexUserAuth].email
-		);
-		registeredUsers[indexUserAuth].refreshToken = tokens.refreshToken;
+		const tokens = await this.getTokens(userAuth.userId, userAuth.email);
+		userAuth.refreshToken = tokens.refreshToken;
 
 		return tokens;
 	}
 
 	logout(userId: string): void {
-		const indexUserAuth = registeredUsers.findIndex(
+		const maybeUserAuth = ArrayHelpers.find(
+			registeredUsers,
 			(auth) => auth.userId === userId
 		);
 
-		if (indexUserAuth === -1) {
+		if (!maybeUserAuth.isSome) {
 			throw new HttpException(
 				'This user has not been registered',
 				HttpStatus.NOT_FOUND
 			);
 		}
 
-		registeredUsers[indexUserAuth].refreshToken = undefined;
+		const userAuth = maybeUserAuth.value;
+
+		userAuth.refreshToken = undefined;
 	}
 
 	async refreshTokens(
 		dto: AuthRefreshTokenRequestDTO
 	): Promise<AuthResponseDTO> {
-		const indexUserAuth = registeredUsers.findIndex(
+		const maybeUserAuth = ArrayHelpers.find(
+			registeredUsers,
 			(auth) => auth.userId === dto.userId
 		);
 
-		if (indexUserAuth === -1) {
+		if (!maybeUserAuth.isSome) {
 			throw new HttpException(
 				'This user has not been registered',
 				HttpStatus.NOT_FOUND
 			);
 		}
 
-		if (
-			!registeredUsers[indexUserAuth].refreshToken ||
-			registeredUsers[indexUserAuth].refreshToken != dto.refreshToken
-		) {
+		const userAuth = maybeUserAuth.value;
+
+		if (!userAuth.refreshToken || userAuth.refreshToken != dto.refreshToken) {
 			throw new HttpException('Access denied', HttpStatus.FORBIDDEN);
 		}
 
-		const tokens = await this.getTokens(
-			registeredUsers[indexUserAuth].userId,
-			registeredUsers[indexUserAuth].email
-		);
-		registeredUsers[indexUserAuth].refreshToken = tokens.refreshToken;
+		const tokens = await this.getTokens(userAuth.userId, userAuth.email);
+		userAuth.refreshToken = tokens.refreshToken;
 
 		return tokens;
 	}
@@ -128,11 +129,11 @@ export class AuthService {
 
 		const [at, rt] = await Promise.all([
 			this.jwtService.signAsync(jwtPayload, {
-				secret: process.env.JWT_ACCESS_SECRET,
+				secret: process.env['JWT_ACCESS_SECRET'],
 				expiresIn: '5d'
 			}),
 			this.jwtService.signAsync(jwtPayload, {
-				secret: process.env.JWT_REFRESH_SECRET,
+				secret: process.env['JWT_REFRESH_SECRET'],
 				expiresIn: '7d'
 			})
 		]);

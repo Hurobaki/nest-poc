@@ -64,7 +64,7 @@ export class UsersController {
 	@ApiNotFoundResponse({
 		description: 'User does not exist'
 	})
-	updateUser(@Param('id') id: string, @Body() dto: UpdateUserDTO): User {
+	updateUser(@Param('id') id: string, @Body() dto: UpdateUserDTO): void {
 		return this.usersService.update(id, dto);
 	}
 
