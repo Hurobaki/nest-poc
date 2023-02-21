@@ -8,18 +8,18 @@ import { UsersModule } from './users/users.module';
 import { CatsModule } from './cats/cats.module';
 
 @Module({
-    imports: [AuthModule, UsersModule, CatsModule],
-    controllers: [AppController],
-    providers: [
-        /**
-         * Set global guard
-         * All endpoints, except those with 'isPublic' metadata (see at.guard.ts), will need an access token
-         */
-        {
-            provide: APP_GUARD,
-            useClass: AtGuard
-        },
-        AppService
-    ]
+	imports: [AuthModule, UsersModule, CatsModule],
+	controllers: [AppController],
+	providers: [
+		/**
+		 * Set global guard
+		 * All endpoints, except those with 'isPublic' metadata (see at.guard.ts), will need an access token
+		 */
+		{
+			provide: APP_GUARD,
+			useClass: AtGuard
+		},
+		AppService
+	]
 })
 export class AppModule {}

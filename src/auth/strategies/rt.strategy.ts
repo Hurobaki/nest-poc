@@ -7,23 +7,26 @@ import { JwtPayloadWithRt } from '../types/jwtPayloadWithRt.type';
 
 @Injectable()
 export class RtStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
-    constructor() {
-        super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: process.env.JWT_REFRESH_SECRET,
-            // If true the request will be passed to the verify callback
-            passReqToCallback: true
-        });
-    }
+	constructor() {
+		super({
+			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+			secretOrKey: process.env.JWT_REFRESH_SECRET,
+			// If true the request will be passed to the verify callback
+			passReqToCallback: true
+		});
+	}
 
-    validate(req: Request, payload: JwtPayload): JwtPayloadWithRt {
-        const refreshToken = req?.get('authorization')?.replace('Bearer', '').trim();
+	validate(req: Request, payload: JwtPayload): JwtPayloadWithRt {
+		const refreshToken = req
+			?.get('authorization')
+			?.replace('Bearer', '')
+			.trim();
 
-        if (!refreshToken) throw new ForbiddenException('Refresh token malformed');
+		if (!refreshToken) throw new ForbiddenException('Refresh token malformed');
 
-        return {
-            ...payload,
-            refreshToken
-        };
-    }
+		return {
+			...payload,
+			refreshToken
+		};
+	}
 }

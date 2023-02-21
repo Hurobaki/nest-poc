@@ -1,42 +1,42 @@
 [
-    {
-        "id": "63dd1ca94902653ce9344fdc",
-        "name": "Lowery Mclean",
-        "age": 47,
-        "company": "CONFRENZY",
-        "email": "lowerymclean@confrenzy.com",
-        "registered": "2021-03-31"
-    },
-    {
-        "id": "63dd1ca9dceaf5ca2c30a19c",
-        "name": "Blevins Sawyer",
-        "age": 30,
-        "company": "EZENT",
-        "email": "blevinssawyer@ezent.com",
-        "registered": "2022-02-27"
-    },
-    {
-        "id": "63dd1ca9bc9ef5da14592799",
-        "name": "Howard Stephens",
-        "age": 58,
-        "company": "KOFFEE",
-        "email": "howardstephens@koffee.com",
-        "registered": "2014-11-24"
-    },
-    {
-        "id": "63dd1ca9ae64ffb728cd41c1",
-        "name": "Jodi Santos",
-        "age": 44,
-        "company": "PORTALINE",
-        "email": "jodisantos@portaline.com",
-        "registered": "2018-03-12"
-    },
-    {
-        "id": "63dd1ca97dfa16b2703e8a5a",
-        "name": "Rice Murphy",
-        "age": 33,
-        "company": "SURETECH",
-        "email": "ricemurphy@suretech.com",
-        "registered": "2017-01-06"
-    }
+	{
+		"id": "63dd1ca94902653ce9344fdc",
+		"name": "Lowery Mclean",
+		"age": 47,
+		"company": "CONFRENZY",
+		"email": "lowerymclean@confrenzy.com",
+		"registered": "2021-03-31"
+	},
+	{
+		"id": "63dd1ca9dceaf5ca2c30a19c",
+		"name": "Blevins Sawyer",
+		"age": 30,
+		"company": "EZENT",
+		"email": "blevinssawyer@ezent.com",
+		"registered": "2022-02-27"
+	},
+	{
+		"id": "63dd1ca9bc9ef5da14592799",
+		"name": "Howard Stephens",
+		"age": 58,
+		"company": "KOFFEE",
+		"email": "howardstephens@koffee.com",
+		"registered": "2014-11-24"
+	},
+	{
+		"id": "63dd1ca9ae64ffb728cd41c1",
+		"name": "Jodi Santos",
+		"age": 44,
+		"company": "PORTALINE",
+		"email": "jodisantos@portaline.com",
+		"registered": "2018-03-12"
+	},
+	{
+		"id": "63dd1ca97dfa16b2703e8a5a",
+		"name": "Rice Murphy",
+		"age": 33,
+		"company": "SURETECH",
+		"email": "ricemurphy@suretech.com",
+		"registered": "2017-01-06"
+	}
 ]

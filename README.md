@@ -30,14 +30,14 @@
 
 ### Prerequisites
 
--   Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+- Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
 
--   Install [firebase-tools](https://firebase.google.com/docs/cli) CLI, version: >= 11.22.0
+- Install [firebase-tools](https://firebase.google.com/docs/cli) CLI, version: >= 11.22.0
 
--   Install NestJS CLI using the following command :
-    ```bash
-    $ yarn global add @nestjs/cli
-    ```
+- Install NestJS CLI using the following command :
+  ```bash
+  $ yarn global add @nestjs/cli
+  ```
 
 ```bash
 $ yarn install

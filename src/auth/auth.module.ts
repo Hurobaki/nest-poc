@@ -14,8 +14,8 @@ import { RtStrategy } from './strategies/rt.strategy';
  * - Exports `UsersModule` in users.module.ts and import `UsersModule` in auth.module.ts
  */
 @Module({
-    imports: [JwtModule.register({}), UsersModule],
-    controllers: [AuthController],
-    providers: [AuthService, AtStrategy, RtStrategy]
+	imports: [JwtModule.register({}), UsersModule],
+	controllers: [AuthController],
+	providers: [AuthService, AtStrategy, RtStrategy]
 })
 export class AuthModule {}
