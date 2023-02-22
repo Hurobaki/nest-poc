@@ -14,7 +14,7 @@ import express from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './app.module';
 import admin from 'firebase-admin';
-import { TestDTO } from './users/dto/test.dto';
+import { TestDTO } from './modules/users/dto/test.dto';
 
 /**
  * Comment for the line "main": "dist/main.functions.js" of the package.json :

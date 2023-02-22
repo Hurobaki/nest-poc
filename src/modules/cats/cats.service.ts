@@ -16,7 +16,8 @@ export class CatsService {
 			age: createCatDto.age,
 			lastVaccinationTimestamp: createCatDto.lastVaccinationTimestamp
 				? Some(createCatDto.lastVaccinationTimestamp)
-				: Nothing
+				: Nothing,
+			siblings: ['serge', 'loveAndPeace']
 		};
 		// Rendre l'écriture dans Firestore automatique, utiliser une fonction par collection qui prends la data typée
 		// en paramètre et l'ajoute dans la collection

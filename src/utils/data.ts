@@ -1,7 +1,7 @@
 import { JsonDecoder } from 'ts.data.json';
-import { UserAuth } from '../auth/entities/userAuth.entity';
 import dataJson from './data.json';
 import { UserDecoder } from './decoders/user';
+import { UserAuth } from '../modules/auth/entities/userAuth.entity';
 
 const dataResult = JsonDecoder.array(UserDecoder, 'UserDecoderArray').decode(
 	dataJson
