@@ -1,4 +1,4 @@
-import { Company } from '../../utils/models/Company';
+import { Company } from '../../../utils/models/Company';
 
 export class User {
 	constructor(

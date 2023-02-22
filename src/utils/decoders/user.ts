@@ -1,5 +1,5 @@
 import { JsonDecoder } from 'ts.data.json';
-import { User } from '../../users/entities/user.entity';
+import { User } from '../../modules/users/entities/user.entity';
 import { Company } from '../models/Company';
 
 export const UserDecoder: JsonDecoder.Decoder<User> = JsonDecoder.object<User>(

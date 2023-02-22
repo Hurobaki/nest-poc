@@ -4,7 +4,7 @@ import { CreateCatParams } from './dto/CreateCatParams.dto';
 import { UpdateCatParams } from './dto/UpdateCatParams.dto';
 import { Nothing, Some } from 'ts-help';
 import { FindOneParams } from './params/FindOneParams';
-import { Cat } from '../utils/models/entities/types/Cat';
+import { Cat } from '../../utils/models/entities/types/Cat';
 import { CatEntity } from './entities/cat.entity';
 
 @Injectable()

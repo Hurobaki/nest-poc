@@ -23,7 +23,7 @@ import { AuthRefreshTokenRequestDTO } from './dto/authRefreshTokenRequest.dto';
 import { AuthResponseDTO } from './dto/authResponse.dto';
 import { SignInRequestDTO } from './dto/signInRequest.dto';
 import { SignUpRequestDTO } from './dto/signUpRequest.dto';
-import { Public } from '../utils/decorators/Public';
+import { Public } from '../../utils/decorators/Public';
 
 @Controller('auth')
 @ApiTags('Auth')

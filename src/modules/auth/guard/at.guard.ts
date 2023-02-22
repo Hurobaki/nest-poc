@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import {
 	IS_PUBLIC_KEY,
 	IS_PUBLIC_KEY_TYPE
-} from '../../utils/decorators/Public';
+} from '../../../utils/decorators/Public';
 
 /**
  * AuthGuard takes the name given to PassportStrategy as a parameter

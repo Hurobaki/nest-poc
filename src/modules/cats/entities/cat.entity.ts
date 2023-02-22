@@ -1,11 +1,9 @@
-import { MaybeEntity } from '../../utils/models/entities/classes/Maybe.entity';
-
 export class CatEntity {
 	constructor(
 		id: string,
 		name: string,
 		age: number,
-		lastVaccinationTimestamp: MaybeEntity<number>
+		lastVaccinationTimestamp: { value?: number }
 	) {
 		this.id = id;
 		this.name = name;
@@ -31,5 +29,5 @@ export class CatEntity {
 	/**
 	 * The lastVaccinationTimestamp of the cat
 	 */
-	public lastVaccinationTimestamp: MaybeEntity<number>;
+	public lastVaccinationTimestamp: { value?: number };
 }
