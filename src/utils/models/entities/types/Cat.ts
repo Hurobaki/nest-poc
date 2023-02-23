@@ -9,7 +9,7 @@ const test = () => {
 	if (decodeResult.success) {
 		// Decoded type is not called a Maybe, but it is equivalent. We can type it as a Maybe to use it as is, if Maybe
 		// changes in the future this equivalence won't be true anymore and TS will not accept this typing.
-		const maybeTimestamp: Maybe<number> =
+		const maybeTimestamp: Maybe<number[]> =
 			decodeResult.data.lastVaccinationTimestamp;
 	}
 };
@@ -20,6 +20,6 @@ export const CatDecoder = object({
 	id: string,
 	name: string,
 	age: number,
-	lastVaccinationTimestamp: MaybeDecoder(number),
+	lastVaccinationTimestamp: MaybeDecoder(array(number)),
 	siblings: array(string)
 });

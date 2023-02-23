@@ -1,7 +1,7 @@
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateCatParams {
-	constructor(name: string, age: number, lastVaccinationTimestamp?: number) {
+	constructor(name: string, age: number, lastVaccinationTimestamp?: number[]) {
 		this.name = name;
 		this.age = age;
 		this.lastVaccinationTimestamp = lastVaccinationTimestamp;
@@ -24,5 +24,5 @@ export class CreateCatParams {
 	 */
 	@IsOptional()
 	@IsNumber()
-	lastVaccinationTimestamp?: number;
+	lastVaccinationTimestamp?: number[];
 }

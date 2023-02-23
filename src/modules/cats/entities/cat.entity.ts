@@ -3,12 +3,14 @@ export class CatEntity {
 		id: string,
 		name: string,
 		age: number,
-		lastVaccinationTimestamp: { value?: number }
+		lastVaccinationTimestamp: { value?: number[] },
+		siblings: string[]
 	) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.lastVaccinationTimestamp = lastVaccinationTimestamp;
+		this.siblings = siblings;
 	}
 
 	/**
@@ -29,5 +31,10 @@ export class CatEntity {
 	/**
 	 * The lastVaccinationTimestamp of the cat
 	 */
-	public lastVaccinationTimestamp: { value?: number };
+	public lastVaccinationTimestamp: { value?: number[] };
+
+	/**
+	 * An array of the names of the cat's siblings
+	 */
+	public siblings: string[];
 }
