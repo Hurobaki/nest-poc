@@ -1,10 +1,11 @@
 import { MaybeDecoder } from '../../../decoders/Maybe';
-import { array, object, z } from 'zod';
+import { array, object, SafeParseReturnType, z } from 'zod';
 import { Maybe } from 'ts-help';
 import { number, string } from '../../../helpers/zodAliases';
 
-const test = () => {
-	const decodeResult = CatDecoder.safeParse('');
+const test = async () => {
+	const decodeResult: SafeParseReturnType<any, Cat> = CatDecoder.safeParse('');
+	const decodeAsync: Cat = await CatDecoder.parseAsync('');
 
 	if (decodeResult.success) {
 		// Decoded type is not called a Maybe, but it is equivalent. We can type it as a Maybe to use it as is, if Maybe

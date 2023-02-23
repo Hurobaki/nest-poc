@@ -2,6 +2,12 @@ import * as fs from 'fs';
 import { ArrayHelpers } from 'ts-help';
 import * as path from 'path';
 
+const EXTRACT_OBJECT_DECODER_REGEX = (typeName: string) =>
+	new RegExp(
+		`${typeName}Decoder = object\\({\\n\\t([\\w\\W]*)\\n}\\);\\n$`,
+		'g'
+	);
+
 const EXTRACT_CLASS_CONSTRUCTOR_REGEX = /constructor\(([^)]*)\)/g;
 
 const recursiveReadDir = (dirPath: string, extension?: string): string[] => {
@@ -28,12 +34,6 @@ const recursiveReadDir = (dirPath: string, extension?: string): string[] => {
 const getFileName = (path: string, extensionToRemove?: string): string => {
 	return (path.split('/').pop() || path).replace(extensionToRemove || '', '');
 };
-
-const EXTRACT_OBJECT_DECODER_REGEX = (typeName: string) =>
-	new RegExp(
-		`${typeName}Decoder = object\\({\\n\\t([\\w\\W]*)\\n}\\);\\n$`,
-		'g'
-	);
 
 const removeEscapedCharacters = (properties: string[]): string[] => {
 	return properties.map((property) => {
