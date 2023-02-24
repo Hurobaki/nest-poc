@@ -3,7 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-name: backend
+name: backend-deploy
 appendCommitMessageToRunName: true
 
 # Set branch name to trigger the pipeline
@@ -23,3 +23,9 @@ steps:
     yarn install
     yarn build
   displayName: 'yarn install and build'
+
+- script: |
+    yarn global add firebase-tools
+    pwd
+  displayName: 'install firebase CLI'
+
