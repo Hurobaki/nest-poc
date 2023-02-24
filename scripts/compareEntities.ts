@@ -109,11 +109,23 @@ const translateClassicProperty = (fileProp: ClassicProperty): string => {
 	return fileProp.property;
 };
 
-const EXTRACT_PROPERTY_NAME_AND_TYPE_REGEX = /^([\w\W]*): ([\w\W]*)$/g;
+const EXTRACT_PROPERTY_NAME_AND_TYPE_REGEX = /^(\w+): ([\w\W]+)$/g;
 
-const ARRAY_PROPERTY_REGEX = /^array\(([\w\W]*)\)$/g;
+const ARRAY_PROPERTY_REGEX = /^array\(([\w\W]+)\)$/g;
 
-const MAYBE_PROPERTY_REGEX = /^MaybeDecoder\(([\w\W]*)\)$/g;
+const MAYBE_PROPERTY_REGEX = /^MaybeDecoder\(([\w\W]+)\)$/g;
+
+const UNION_PROPERTY_REGEX = /^([^|]+)( \| ([^|]+))+$/g;
+
+// const pattern = ' \\| ([^| ]+)'
+// const UNION_PROPERTY_REGEX = new RegExp(pattern, 'g')
+// const str = 'Test | Lama | "coucou" | 123 | true | dniozeadn | dfeuzibizce'
+// const repeatMatch = str.match(UNION_PROPERTY_REGEX)
+// const iteration = repeatMatch.length
+//
+// const TEST_REGEX = '^([^|]+)' + pattern.repeat(iteration) + '$'
+//
+// const match = str.match(TEST_REGEX)
 
 const getFilePropertyType = (filePropertyType: string): FilePropertyType => {
 	const [arrayMatch, maybeMatch] = [
