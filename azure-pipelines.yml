@@ -29,6 +29,8 @@ steps:
     pwd
     ls
     cd src/
+    pwd
+    ls
   displayName: 'install firebase CLI'
 
 - script: |
