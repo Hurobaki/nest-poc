@@ -26,13 +26,4 @@ steps:
 
 - script: |
     yarn global add firebase-tools
-    pwd
-    ls
-  workingDirectory: src
   displayName: 'install firebase CLI'
-
-- script: |
-    pwd
-    ls
-  workingDirectory: src
-  displayName: 'check if cd is persistent'
